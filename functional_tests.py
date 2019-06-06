@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
+import time
 
 
 class NewVisitorTest(unittest.TestCase):
@@ -30,7 +31,7 @@ class NewVisitorTest(unittest.TestCase):
 
 		# She types 'Choreograph a dance' because she has plans later in the summer.
 
-		inputbox.send_keys(Key.ENTER)
+		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
 
 		# WHen she hits enter, the page updates, and now the page lists
@@ -39,7 +40,8 @@ class NewVisitorTest(unittest.TestCase):
 		table = self.browser.find_element_by_id('id_list_table')
 		rows = table.find_element_by_tag_name('tr')
 		self.assertTrue(
-			any(row.text == '1: Choreograph a dance' for row in rows)
+			any(row.text == '1: Choreograph a dance' for row in rows),
+			"New to-do item did not appear in table"
 			)
 
 
