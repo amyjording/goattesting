@@ -30,7 +30,9 @@ class NewVisitorTest(unittest.TestCase):
 			)
 
 		# She types 'Choreograph a dance' because she has plans later in the summer.
-
+		inputbox = self.browser.find_element_by_id('id_new_item')
+		inputbox.click()
+		inputbox.send_keys('Choreograph a dance')
 		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
 
@@ -38,19 +40,21 @@ class NewVisitorTest(unittest.TestCase):
 		# "1: Choreograph a dance" as an item in a to-do list.
 
 		table = self.browser.find_element_by_id('id_list_table')
-		rows = table.find_element_by_tag_name('tr')
-		self.assertTrue(
-			any(row.text == '1: Choreograph a dance' for row in rows),
-			"New to-do item did not appear in table"
-			)
+		rows = table.find_elements_by_tag_name('tr')
+		self.assertIn('1: Choreograph a dance', [row.text for row in rows])
+		self.assertIn('2: Practice the dance each Sunday', [row.text for row in rows])
 
 
 		# There is still a text box inviting her to add another item. She
 		# enters "Practice the dance each Sunday"
+		#inputbox.send_keys('2. Practice the dance each Sunday')
+		inputbox.send_keys(Keys.ENTER)
+		time.sleep(1)
 
-		self.fail("Finish the test!")
 
 		# The page updatesybuttest again, and shows both items on her list
+
+		self.fail("Finish the test!")
 
 		# Amy wonders about the site remembering her list, and notices that
 		# the site generated a unique url for her and text that tells her about it.
