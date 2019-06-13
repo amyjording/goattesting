@@ -37,7 +37,7 @@ class NewVisitorTest(unittest.TestCase):
 		# She types 'Choreograph a dance' because she has plans later in the summer.
 		# WHen she hits enter, the page updates, and now the page lists
 		# "1: Choreograph a dance" as an item in a to-do list.
-		inputbox.send_keys('1: Choreograph a dance')
+		inputbox.send_keys('Choreograph a dance')
 		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
 		self.check_for_row_in_list_table('1: Choreograph a dance')
@@ -46,7 +46,7 @@ class NewVisitorTest(unittest.TestCase):
 		# There is still a text box inviting her to add another item. She
 		# enters "Practice the dance each Sunday"
 		inputbox = self.browser.find_element_by_id('id_new_item')
-		inputbox.send_keys('2: Practice the dance each Sunday')
+		inputbox.send_keys('Practice the dance each Sunday')
 		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
 
